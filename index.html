@@ -40,6 +40,32 @@
             font-size: 2rem;
             z-index: 10;
         }
+
+        /* Save Button Styling */
+        .save-button {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        /* Message Styling */
+        .message {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.2rem;
+            z-index: 20;
+        }
     </style>
 </head>
 <body>
@@ -47,6 +73,12 @@
 
     <!-- Ruffle Flash Embed -->
     <div id="ruffle-player"></div>
+
+    <!-- Save Button -->
+    <button class="save-button" onclick="saveProgress()">Save Progress</button>
+
+    <!-- Message Display -->
+    <div class="message" id="message"></div>
 
     <script>
         // Initialize Ruffle and load the SWF
@@ -60,7 +92,7 @@
         // Load the SWF file
         player.load("douchebag-workout.swf");
 
-        // Make sure the SWF scales to fit the container, preserving its aspect ratio
+        // Function to resize the SWF player and maintain aspect ratio
         function resizePlayer() {
             var width = window.innerWidth;
             var height = window.innerHeight;
@@ -89,6 +121,25 @@
         // Call resize initially and on window resize
         window.addEventListener('resize', resizePlayer);
         window.dispatchEvent(new Event('resize')); // Initial call to set size
+
+        // Function to save the progress to localStorage
+        function saveProgress() {
+            // Example: Save a random score (replace with actual game logic)
+            var score = Math.floor(Math.random() * 100);
+            localStorage.setItem('douchebagWorkoutScore', score);
+
+            // Show message that progress was saved
+            document.getElementById('message').textContent = 'Progress saved! Score: ' + score;
+        }
+
+        // Load saved progress when the page is loaded
+        window.onload = function() {
+            var savedScore = localStorage.getItem('douchebagWorkoutScore');
+            if (savedScore) {
+                document.getElementById('message').textContent = 'Loaded saved score: ' + savedScore;
+            }
+        }
+
     </script>
 
 </body>
