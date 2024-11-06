@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Douchebag Workout</title>
+    <!-- Ruffle Web Player (CDN) -->
+    <script src="https://unpkg.com/ruffle-web-player@latest/dist/ruffle.js"></script>
 </head>
 <body>
     <h1>Douchebag Workout</h1>
 
-    <!-- SWF Embed (using the object tag for Flash content) -->
-    <object width="800" height="600" data="/douchebag-workout.swf" type="application/x-shockwave-flash">
-        <param name="movie" value="douchebag-workout.swf">
-        <param name="quality" value="high">
-        <param name="allowFullScreen" value="true">
-        <param name="wmode" value="opaque">
-    </object>
+    <!-- Ruffle Flash Embed -->
+    <div id="ruffle-player"></div>
+
+    <script>
+        // Initialize Ruffle and load the SWF
+        var ruffle = window.RufflePlayer.newest();
+        var player = ruffle.createPlayer();
+        document.getElementById("ruffle-player").appendChild(player);
+        player.load("douchebag-workout.swf");
+    </script>
 
     <!-- Flash fallback text -->
-    <p>Your browser does not support Flash. Please use a browser that supports Flash to view the SWF file.</p>
+    <p>Your browser does not support Flash or Ruffle. Please use a modern browser to view the SWF file.</p>
 </body>
 </html>
+
