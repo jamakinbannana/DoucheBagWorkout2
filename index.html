@@ -7,7 +7,7 @@
     <!-- Ruffle Web Player (CDN) -->
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
     <style>
-        /* Ensure the body and html take full height and width */
+        /* Make the html and body fill the entire viewport and center content */
         html, body {
             margin: 0;
             padding: 0;
@@ -17,14 +17,17 @@
             justify-content: center;
             align-items: center;
             background-color: #000;
-            overflow: hidden; /* Hide any overflow */
+            overflow: hidden;
         }
 
-        /* Ruffle player container should take full screen */
+        /* The player container should maintain the aspect ratio and center itself */
         #ruffle-player {
+            position: relative;
             width: 100%;
             height: 100%;
-            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /* Optional: Center the title */
@@ -49,7 +52,7 @@
         // Initialize Ruffle and load the SWF
         var ruffle = window.RufflePlayer.newest();
         var player = ruffle.createPlayer();
-
+        
         // Append the player to the container div
         var playerContainer = document.getElementById("ruffle-player");
         playerContainer.appendChild(player);
@@ -58,7 +61,7 @@
         player.load("douchebag-workout.swf");
 
         // Make sure the SWF scales to fit the container, preserving its aspect ratio
-        window.addEventListener('resize', function() {
+        function resizePlayer() {
             var width = window.innerWidth;
             var height = window.innerHeight;
 
@@ -81,10 +84,11 @@
             // Apply the new size to the Ruffle player
             player.style.width = newWidth + 'px';
             player.style.height = newHeight + 'px';
-        });
+        }
 
-        // Trigger resize event initially to set the correct size
-        window.dispatchEvent(new Event('resize'));
+        // Call resize initially and on window resize
+        window.addEventListener('resize', resizePlayer);
+        window.dispatchEvent(new Event('resize')); // Initial call to set size
     </script>
 
 </body>
