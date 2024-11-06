@@ -6,6 +6,34 @@
     <title>Douchebag Workout</title>
     <!-- Ruffle Web Player (CDN) -->
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <style>
+        /* Ensure the body takes full viewport height */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+
+        /* Ruffle player container takes full screen */
+        #ruffle-player {
+            width: 100%;
+            height: 100%;
+        }
+
+        h1 {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            z-index: 10; /* Make sure the title stays above the player */
+        }
+    </style>
 </head>
 <body>
     <h1>Douchebag Workout</h1>
@@ -23,4 +51,3 @@
 
 </body>
 </html>
-
